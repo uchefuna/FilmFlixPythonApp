@@ -15,7 +15,7 @@ class PythonAppBox:
         # setting title
         root.title("Python App Interface")
         # setting window size
-        width, height = 700, 600
+        width, height = 600, 600
         screenwidth = root.winfo_screenwidth()
         screenheight = root.winfo_screenheight()
         alignstr = "%dx%d+%d+%d" % (
@@ -52,7 +52,7 @@ class PythonAppBox:
         label_acc_details = []
         for _ in range(len(labelTeaxt)):
             if "FilmFlix" in labelTeaxt[_]:
-                fnt, fntn = "Arial", 30
+                fnt, fntn = "Arial", 24
             elif "Github" == labelTeaxt[_] or "LinkedIn" == labelTeaxt[_]:
                 cur, fgc, und = "hand2", "blue", "underline"
             label_acc_details.append(
@@ -73,7 +73,6 @@ class PythonAppBox:
         label_acc_details[0].bind(
             "<Leave>", lambda e: label_acc_details[0].configure(fg="blue")
         )
-
         label_acc_details[0].bind("<Button-1>", self.acc_github)
         label_acc_details[0].place(x=10, y=10, width=70, height=20)
 
@@ -83,8 +82,7 @@ class PythonAppBox:
         label_acc_details[1].bind(
             "<Leave>", lambda e: label_acc_details[1].configure(fg="black")
         )
-
-        label_acc_details[1].place(x=250, y=10, width=200, height=20)
+        label_acc_details[1].place(x=90, y=10, width=400, height=20)
 
         label_acc_details[2].bind(
             "<Enter>", lambda e: label_acc_details[2].configure(fg="red")
@@ -92,17 +90,16 @@ class PythonAppBox:
         label_acc_details[2].bind(
             "<Leave>", lambda e: label_acc_details[2].configure(fg="blue")
         )
-
         label_acc_details[2].bind("<Button-1>", self.acc_linkedin)
-        label_acc_details[2].place(x=610, y=10, width=70, height=20)
+        label_acc_details[2].place(x=510, y=10, width=70, height=20)
 
-        label_acc_details[3].place(x=40, y=50, width=620, height=50)
+        label_acc_details[3].place(x=30, y=50, width=520, height=50)
 
-        label_acc_details[4].place(x=50, y=528, width=650, height=20)
+        label_acc_details[4].place(x=20, y=528, width=530, height=20)
 
-        label_acc_details[5].place(x=50, y=548, width=650, height=20)
+        label_acc_details[5].place(x=20, y=548, width=530, height=20)
 
-        label_acc_details[6].place(x=50, y=575, width=650, height=20)
+        label_acc_details[6].place(x=20, y=575, width=530, height=20)
 
         labelTeaxt = [
             "Print ALL",
@@ -129,7 +126,7 @@ class PythonAppBox:
                 text=labelTeaxt[_],
                 font=("Times", 12),
                 command=lambda e=_: self.button_query(e),
-            ).place(x=40, y=120 + j, width=70, height=30)
+            ).place(x=40, y=120 + j, width=100, height=30)
 
             tk.Label(
                 root,
@@ -137,7 +134,7 @@ class PythonAppBox:
                 fg="#333333",
                 text=labelTeaxt[_ + 6],
                 font=("Times", 12),
-            ).place(x=120, y=120 + j, width=210, height=30)
+            ).place(x=150, y=120 + j, width=500, height=30)
             j += 60
 
     def acc_github(self, event=None):
@@ -231,6 +228,7 @@ if __name__ == "__main__":
             + "\n"
         )
 
+        tme.sleep(1)
         try:
             input_option = int(input(">>>>> Please enter a number: "))
 

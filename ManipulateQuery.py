@@ -1,7 +1,7 @@
 # Progrm to manipulate Queries in the table
 
 
-from TkinterGUI import PythonAppBox as pab
+from main import PythonAppBox as pab
 from mysqlCRUD import *
 import tkinter as tk
 
@@ -37,7 +37,7 @@ class InsertQuery(tk.Toplevel):
         ]
 
         dec_info = tk.Label(
-            self, text=self.message, bg="#BAD0EF", font=("Times", 16)
+            self, text=self.message, bg="#BAD0EF", font=("Times", 14)
         ).grid(row=0, column=0, columnspan=4, padx=(10, 0), pady=5, sticky="w")
 
         z, r = 6, 7
@@ -68,15 +68,15 @@ class InsertQuery(tk.Toplevel):
         self.entries = [tk.Entry(self, bd=3, font=("Arial", 12)) for _ in range(z)]
         self.entries[0].focus_set()
         for entry in self.entries:
-            tk.Label(self, text=labelTeaxt[i], bg="#BAD0EF", font=("Times", 12)).grid(
-                row=j, column=0, padx=(10, 250), pady=5, sticky="w"
+            tk.Label(self, text=labelTeaxt[i], bg="#BAD0EF", font=("Times", 11)).grid(
+                row=j, column=0, padx=(10, 320), pady=5, sticky="w"
             )
-            entry.grid(row=j, column=0, columnspan=2, padx=(250, 0), pady=5, sticky="w")
+            entry.grid(row=j, column=0, columnspan=2, padx=(320, 0), pady=5, sticky="w")
             i, j = i + 1, j + 1
 
     def bottom_note(self, r):
         btn = tk.Button(self, text=self.key_word.upper())
-        btn.grid(row=r, column=0, padx=(10, 70), pady=5, sticky="w")
+        btn.grid(row=r, column=0, ipadx=5, padx=(15, 90), pady=5, sticky="w")
         btn.bind("<Button-1>", self.print_input)
 
         tk.Label(

@@ -6,10 +6,10 @@ import sqlite3 as sql  # import sqlite3 module
 
 # mySQL connector to the database filmflix.db
 try:
-    with sql.connect("filmflix.db") as conn:
-    # with sql.connect(
-    #     "C:/Users/Glow/OneDrive/JustIT/Python/Python Classes/Python Project/Python Worksheets Py/FlimFlixPythonApp/filmflix.db"
-    # ) as conn:
+    # with sql.connect("filmflix.db") as conn:
+    with sql.connect(
+        "C:/Users/Glow/OneDrive/Github/MainProjects/FlimFlixPythonApp/filmflix.db"
+    ) as conn:
         _mycursor = conn.cursor()
 except sql.OperationalError as err:
     print(f"Connection error: '{err}'")
