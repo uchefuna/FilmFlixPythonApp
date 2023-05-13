@@ -14,7 +14,7 @@ try:
 except sql.OperationalError as err:
     print(f"Connection error: '{err}'")
 else:
-    print("Database connection successful")
+    print("Python SQLite connector successfully connected to the database.")
 
 
 # query to insert data
@@ -72,7 +72,7 @@ def print_query(param):
 
         print_all = []
         tsql = f"SELECT * FROM tblFilms WHERE UPPER({param[0]}) LIKE UPPER('%{param[1]}%');"
-        print("\nReading data from table:")
+        print("Reading data from table:")
         for row in _mycursor.execute(tsql):
             print_all.append(row)
     except sql.OperationalError as err:
@@ -86,7 +86,7 @@ def print_query(param):
 def printall_query():
     try:
         print_all = []
-        print("\nReading data from table:")
+        print("Reading data from table:")
         tsql = "SELECT * FROM tblFilms;"
         for row in _mycursor.execute(tsql):
             print_all.append(row)

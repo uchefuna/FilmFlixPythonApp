@@ -13,29 +13,30 @@ class PythonAppBox:
 
     def tk_interface(self):
         # setting title
-        root.title("Python App Interface")
+        self.root.title("Python App Interface")
         # setting window size
         width, height = 550, 500
-        screenwidth = root.winfo_screenwidth()
-        screenheight = root.winfo_screenheight()
+        screenwidth = self.root.winfo_screenwidth()
+        screenheight = self.root.winfo_screenheight()
         alignstr = "%dx%d+%d+%d" % (
             width,
             height,
             (screenwidth - width) / 2,
             (screenheight - height) / 2,
         )
-        root.geometry(alignstr)
-        root.resizable(width=False, height=False)
-        root.protocol("WM_DELETE_WINDOW", self.win_x)
+        self.root.geometry(alignstr)
+        self.root.resizable(width=False, height=False)
+        self.root.protocol("WM_DELETE_WINDOW", self.win_x)
 
-        frame1 = tk.Frame(master=root, width=width, height=height)
+        frame1 = tk.Frame(master=self.root, width=width, height=height)
         frame1.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
 
         self.create_layout(6, 0)
 
     def win_x(self):
         close_conn()
-        root.destroy()
+        self.root.destroy()
+        sys.exit("you cancelled the program. Refresh the browser to restart the app")
 
     def create_layout(self, z, j):
         labelTeaxt = [
@@ -57,7 +58,7 @@ class PythonAppBox:
                 cur, fgc, und = "hand2", "blue", "underline"
             label_acc_details.append(
                 tk.Label(
-                    root,
+                    self.root,
                     justify="center",
                     fg=fgc,
                     cursor=cur,
@@ -115,7 +116,7 @@ class PythonAppBox:
             "Amend a record to the table",
             "Delete a record from the table",
             "Specify a movie to print",
-            "Exit the program",
+            "Exit program and go back to main menu",
         ]
 
         for _ in range(z):
@@ -131,12 +132,12 @@ class PythonAppBox:
             ).place(x=20, y=100 + j, width=100, height=30)
 
             tk.Label(
-                root,
+                self.root,
                 anchor="w",
                 fg="#333333",
                 text=labelTeaxt[_ + 6],
                 font=("Times", 12),
-            ).place(x=150, y=100 + j, width=500, height=30)
+            ).place(x=150, y=100 + j, width=400, height=30)
             j += 50
 
     def acc_github(self, event=None):
@@ -155,7 +156,7 @@ class PythonAppBox:
             "600x550",
             "Enter details you want to insert to the Flimflix table: ",
             "600x420",
-            "Enter details you want to update to the Flimflix table and please specify the movie: ",
+            "Enter details you want to update to the Flimflix table: ",
             "720x400",
             "Specify the movie you want to delete from the Flimflix table: ",
             "600x300",
@@ -194,25 +195,28 @@ class PythonAppBox:
                         row = "Error printing a record from the table"
                 PrintAllRecordGUI(self.root, 0, p_list[0], row, p_list[1])
             elif e == 1:
-                InsertQuery(root, 1, p_list[0], p_list[2], p_list[3])
+                InsertQuery(self.root, 1, p_list[0], p_list[2], p_list[3])
                 print("insert query")
             elif e == 2:
-                InsertQuery(root, 2, p_list[0], p_list[4], p_list[5])
+                InsertQuery(self.root, 2, p_list[0], p_list[4], p_list[5])
                 print("update query")
             elif e == 3:
-                InsertQuery(root, 3, p_list[0], p_list[6], p_list[7])
+                InsertQuery(self.root, 3, p_list[0], p_list[6], p_list[7])
                 print("delete query")
             elif e == 4:
-                InsertQuery(root, 4, p_list[0], p_list[8], p_list[7])
+                InsertQuery(self.root, 4, p_list[0], p_list[8], p_list[7])
                 print("print query")
             elif e == 5:
-                print("exit program")
+                # close_conn()
+                self.root.destroy()
+                print("exit program, going to main menu")
+                tme.sleep(2)
+                main_func() # exit program and go to main menu
         except Exception as err:
             print(f"main error: {err}")
 
 
-if __name__ == "__main__":
-
+def main_func():
     confirmed = False
     while not confirmed:
         print(
@@ -221,12 +225,17 @@ if __name__ == "__main__":
             + "\n"
             + "To manipulate and perform CRUD operation on the the FilmFlix database."
             + "\n"
-            + "Choose (1) to use the Tkinter user interface or (2) to use the command line interface."
+            + "\n"
+            + "MAIN MENU:"
+            + "\n"
+            + "Choose (1) to use the Tkinter user interface (GUI)."
+            + "\n"
+            + "Choose (2) to use the command line interface (CLI)."
             + "\n"
             + "\n"
-            + "USE TKINTER USER GUI      (Enter 1):"
+            + "USE TKINTER USER GUI      (Enter 1)"
             + "\n"
-            + "USE TERMINAL INTERFACE    (Enter 2):"
+            + "USE TERMINAL INTERFACE    (Enter 2)"
             + "\n"
         )
 
@@ -246,9 +255,13 @@ if __name__ == "__main__":
                 elif input_option == 2:
                     filmflix_tmx()
             else:
-                print("Ooops! Please enter only number (1 - 2): ")
+                print("Ooops! Please enter only number: (1 - 2): ")
 
-        except ValueError as err:
-            print("Oi! You can only enter numbers: ")
+        except ValueError:
+            print("Oi! You can only enter number: (1 - 2) ")
         finally:
             tme.sleep(1)
+
+
+if __name__ == "__main__":
+    main_func()
