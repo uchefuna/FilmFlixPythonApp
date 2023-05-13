@@ -47,7 +47,6 @@ def manipInsert(i=0, j=0):
                 print('Now press ESC')
                 if msv.getch() == chr(27).encode():
                     get_out_loop,j = True,5
-                    print(j)
                     break
             i += 1
             tme.sleep(1)
@@ -90,7 +89,6 @@ def manipUpdate(i=0, j=0):
         + "You should provide the correct recrods accordingly with the datatype"
     )
 
-    print(j)
     while j < 5:
         while i < len(tbl_col_val):
             update_opt = input(f">>> {tbl_col_val[i]}: ")
@@ -101,7 +99,6 @@ def manipUpdate(i=0, j=0):
                 print('Now press ESC')
                 if msv.getch() == chr(27).encode():
                     get_out_loop = True
-                    print(j)
                     break
             i += 1
             tme.sleep(1)
