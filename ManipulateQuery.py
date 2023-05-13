@@ -76,20 +76,22 @@ class InsertQuery(tk.Toplevel):
 
     def bottom_note(self, r):
         btn = tk.Button(self, text=self.key_word.upper())
-        btn.grid(row=r, column=0, ipadx=5, padx=(15, 90), pady=5, sticky="w")
+        btn.grid(row=r, column=0, ipadx=10, padx=(13, 200), pady=5, sticky="w")
         btn.bind("<Button-1>", self.print_input)
 
         tk.Label(
             self,
-            text=f"Click button to {self.key_word} records to the Flimflix table",
+            text=f"{self.key_word.title()} Flimflix movie record",
             bg="#BAD0EF",
             fg="#333333",
             font=("Arial", 14),
-        ).grid(row=r, column=0, columnspan=5, padx=(70, 0), pady=5, sticky="w")
+        ).grid(row=r, column=0, columnspan=5, padx=(120, 0), pady=5, sticky="w")
 
         tk.Label(
             self,
-            text=f"NOTE: {self.key_word.title()} button only works when you provided the correct recrods accordingly with the datatype",
+            text=f"NOTE: {self.key_word.title()} button only works when you provided the"
+            + "\n"
+            + "   correct recrods accordingly with the datatype",
             bg="#BAD0EF",
             font=("Arial", 10),
         ).grid(row=r + 1, column=0, columnspan=4, padx=(10, 0), pady=5, sticky="w")
